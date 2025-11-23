@@ -34,4 +34,3 @@ https://supportcommunity.zebra.com/s/article/Adding-a-networked-Zebra-Printer-to
 
 
 
-
