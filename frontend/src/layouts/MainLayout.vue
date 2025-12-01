@@ -16,6 +16,12 @@
           <q-icon name="electric_bolt" /> v2.2.2
         </div>
       </q-toolbar>
+
+      <!-- Navigation Bar -->
+      <q-tabs v-model="currentTab" class="bg-deep-purple-10" active-color="white" indicator-color="white" align="left">
+        <q-tab name="emulator" label="Printer Emulator" icon="print" @click="navigateToEmulator" />
+        <q-tab name="designer" label="Label Designer" icon="design_services" @click="navigateToDesigner" />
+      </q-tabs>
     </q-header>
 
 
@@ -26,10 +32,46 @@
 </template>
 
 <script setup>
+import { ref, onMounted, watch } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { BrowserOpenURL } from 'app/wailsjs/runtime/runtime';
+
+const router = useRouter()
+const route = useRoute()
+const currentTab = ref('emulator')
+
+// Set initial tab based on current route
+onMounted(() => {
+  updateTabFromRoute()
+})
+
+// Watch for route changes to update active tab
+watch(() => route.path, () => {
+  updateTabFromRoute()
+})
+
+function updateTabFromRoute() {
+  if (route.path === '/designer') {
+    currentTab.value = 'designer'
+  } else {
+    currentTab.value = 'emulator'
+  }
+}
+
+function navigateToEmulator() {
+  router.push('/')
+  currentTab.value = 'emulator'
+}
+
+function navigateToDesigner() {
+  router.push('/designer')
+  currentTab.value = 'designer'
+}
+
 function GoToLinkedin() {
   BrowserOpenURL('https://www.linkedin.com/in/david-chupp/')
 }
+
 function GoToGitHub() {
   BrowserOpenURL('https://github.com/dchupp/printerEmulator')
 }
