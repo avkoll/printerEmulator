@@ -1,0 +1,130 @@
+/* ZPL Canvas Styles */
+
+// Variables
+$accent-color: #9c27b0;
+$accent-color-light: rgba(156, 39, 176, 0.08);
+$accent-color-lighter: rgba(156, 39, 176, 0.05);
+$accent-color-border: rgba(156, 39, 176, 0.3);
+$origin-marker-color: #ff6b6b;
+
+.zpl-canvas {
+  position: relative;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border: 1px solid #ccc;
+
+  .empty-state {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #9e9e9e;
+  }
+}
+
+.canvas-orientation-indicator {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  font-size: 10px;
+  color: $accent-color;
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 1000;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.zpl-field-block {
+  position: absolute;
+  cursor: move;
+  user-select: none;
+  padding: 2px;
+  background: rgba(200, 200, 255, 0.05);
+  border: 1px solid transparent;
+  display: inline-block;
+  min-width: 20px;
+  min-height: 20px;
+
+  &.selected {
+    background: $accent-color-light;
+    border: 2px solid $accent-color;
+    outline: 2px solid $accent-color;
+    outline-offset: 2px;
+
+    .block-boundary {
+      opacity: 1;
+    }
+
+    .field-origin {
+      opacity: 1;
+    }
+  }
+
+  &:hover:not(.selected) {
+    background: $accent-color-lighter;
+    border: 1px dashed $accent-color;
+
+    .field-origin {
+      opacity: 1;
+    }
+  }
+}
+
+.field-origin-marker {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: $origin-marker-color;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 1000;
+
+  &.visible {
+    opacity: 1;
+  }
+}
+
+.block-boundary {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border: 1px dashed $accent-color-border;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.field-content {
+  position: relative;
+  display: inline-block;
+}
+
+.text-block-container {
+  display: block;
+}
+
+.text-element {
+  display: inline;
+  color: black;
+}
+
+.barcode-placeholder {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background: #f5f5f5;
+  border: 1px dashed #999;
+  color: #666;
+}
+
+.graphic-box {
+  border: solid black;
+  box-sizing: border-box;
+}
