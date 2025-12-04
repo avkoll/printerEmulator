@@ -10,7 +10,7 @@
       <div class="col-8">
         <q-card class="q-ml-sm bg-grey-1" style="height: 88vh; max-width: 95%;">
           <q-card-section>
-            <div class="text-h6">Label Design Canvas</div>
+            <div class="text-h6">Label Designer</div>
           </q-card-section>
 
           <div style="height: 80vh; max-width: 98%; overflow: auto;">
@@ -24,7 +24,7 @@
                 @mousemove="onDrag"
                 ref="canvasRef"
               >
-                <div class="canvas-orientation-indicator">↑ TOP</div>
+                <div class="canvas-orientation-indicator">↓ Label Comes From Here ↓</div>
 
                 <div
                   v-for="element in elements"
