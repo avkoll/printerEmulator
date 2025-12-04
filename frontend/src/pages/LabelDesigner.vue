@@ -84,6 +84,10 @@
           </div>
         </q-card>
       </div>
+
+      <div class="col-4">
+        <ZplOutput />
+      </div>
     </div>
   </q-page>
 </template>
@@ -95,6 +99,7 @@ import { useLabelDesignerStore } from 'stores/labelDesignerStore'
 import { useZplStyles } from 'src/composables/useZplStyles'
 import { useCanvasDragging } from 'src/composables/useCanvasDragging'
 import DesignToolsPanel from 'src/components/label-designer/DesignToolsPanel.vue'
+import ZplOutput from 'src/components/label-designer/ZplOutput.vue'
 import 'src/css/Zpl-canvas.scss'
 
 const store = useLabelDesignerStore()
