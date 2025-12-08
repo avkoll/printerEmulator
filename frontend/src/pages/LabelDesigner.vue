@@ -85,6 +85,7 @@
         </q-card>
       </div>
 
+      <!-- ZPL Output Panel -->
       <div class="col-4">
         <ZplOutput />
       </div>

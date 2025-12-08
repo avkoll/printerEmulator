@@ -3,16 +3,8 @@
     <q-card-section>
       <div class="text-h6">ZPL Output</div>
       <q-separator class="q-my-sm" />
-      <pre class="zpl-output">{{ generatedZpl }}</pre>
+      <pre class="zpl-output">{{ zplCode }}</pre>
       <div class="q-gutter-sm">
-        <q-btn
-          color="primary"
-          icon="code"
-          label="Generate ZPL"
-          @click="generateZpl"
-          class="q-mt-sm"
-          dense
-        />
         <q-btn
           color="purple-12"
           icon="content_copy"
@@ -30,11 +22,11 @@
 import { useQuasar } from 'quasar'
 import { useZplOutput } from 'src/composables/useZplOutput'
 
-const { generatedZpl, generateZpl } = useZplOutput()
+const { zplCode } = useZplOutput()
 const $q = useQuasar()
 
 function copyToClipboard() {
-  navigator.clipboard.writeText(generatedZpl.value)
+  navigator.clipboard.writeText(zplCode.value)
   $q.notify({
     message: 'ZPL copied to clipboard',
     color: 'positive',
