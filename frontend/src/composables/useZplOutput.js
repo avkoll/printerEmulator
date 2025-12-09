@@ -28,10 +28,10 @@ export function useZplOutput() {
       zpl += `^FO${element.x},${element.y}`
 
       // Field rotation if specified
-      if (element.rotation && element.rotation !== 'N') {
-        zpl += '\n'
-        zpl += `^FW${element.rotation}`
-      }
+      // if (element.rotation && element.rotation !== 'N') {
+      //   zpl += '\n'
+      //   zpl += `^FW${element.rotation}`
+      // }
 
       // Field Block if width is specified
       if (element.blockWidth > 0) {
@@ -42,7 +42,7 @@ export function useZplOutput() {
       if (element.contentType === 'text') {
         // Add font scaling
         zpl += '\n'
-        zpl += `^A0N,${element.fontHeight},${element.fontWidth}`
+        zpl += `^A0${element.rotation},${element.fontHeight},${element.fontWidth}`
         // Add field data
         zpl += '\n'
         zpl += `^FD${element.content}^FS`
