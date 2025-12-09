@@ -11,10 +11,39 @@ export function useZplStyles() {
       default: return 0
     }
   }
+  function getFieldBlockDimensions(element) {
+    if (element.contentType === 'text') {
+      const scaleX = element.fontWidth / element.fontHeight
+
+      if (element.blockWidth > 0) {
+        // Has field block - width is blockWidth, height is line height * max lines
+        return {
+          width: element.blockWidth,
+          height: element.fontHeight * element.maxLines
+        }
+      } else {
+        // No field block - need to estimate based on text length
+        // This is approximate; you might need to measure actual text
+        const estimatedCharWidth = element.fontWidth * 0.6  // Approximate for condensed font
+        const textWidth = (element.text?.length || 1) * estimatedCharWidth
+        return {
+          width: textWidth,
+          height: element.fontHeight
+        }
+      }
+    }
+
+    // For boxes/other elements
+    return {
+      width: element.boxWidth || 0,
+      height: element.boxHeight || 0
+    }
+  }
 
   // Get field block positioning and rotation style
   function getFieldBlockStyle(element) {
     const fieldRotationDeg = getFieldRotationDegrees(element.rotation)
+    const dimensions = getFieldBlockDimensions(element)
 
     let translateX = '0'
     let translateY = '0'
@@ -40,6 +69,8 @@ export function useZplStyles() {
       position: 'absolute',
       left: element.x + 'px',
       top: element.y + 'px',
+      width: dimensions.width + 'px',
+      height: dimensions.height + 'px',
       transformOrigin: 'top left',
       transform: `rotate(${fieldRotationDeg}deg) translate(${translateX}, ${translateY})`
     }
@@ -68,7 +99,7 @@ export function useZplStyles() {
     }
 
     const lineHeight = element.fontHeight * FONT_SCALE
-    const maxHeight = lineHeight * element.maxLines
+    const maxHeight = element.fontHeight * element.maxLines
     const adjustedWidth = element.blockWidth / scaleX
 
     return {
@@ -79,7 +110,7 @@ export function useZplStyles() {
       wordWrap: 'break-word',
       overflowWrap: 'break-word',
       whiteSpace: 'pre-wrap',
-      lineHeight: lineHeight + 'px',
+      lineHeight: '1',
       transform: `scaleX(${scaleX})`,
       transformOrigin: 'left top'
     }
