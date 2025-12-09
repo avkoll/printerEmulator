@@ -53,7 +53,7 @@ export function useZplOutput() {
       }
     })
 
-    zpl += '^XZ' // End of label format
+    zpl += '\n^XZ' // End of label format
     return zpl
   })
 

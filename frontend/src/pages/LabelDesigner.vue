@@ -1,11 +1,18 @@
 <template>
   <q-page>
     <div class="row full-height">
-      <!-- Left Control Panel -->
       <div class="col-4">
-        <DesignToolsPanel />
-      </div>
+        <!-- ZPL Output Panel -->
+        <div class="col-4">
+          <ZplOutput />
+        </div>
 
+        <!-- Left Control Panel -->
+        <div class="col-4">
+          <DesignToolsPanel />
+        </div>
+
+      </div>
       <!-- Main Canvas Area -->
       <div class="col-8">
         <q-card class="q-ml-sm bg-grey-1" style="height: 88vh; max-width: 95%;">
@@ -85,10 +92,7 @@
         </q-card>
       </div>
 
-      <!-- ZPL Output Panel -->
-      <div class="col-4">
-        <ZplOutput />
-      </div>
+
     </div>
   </q-page>
 </template>
