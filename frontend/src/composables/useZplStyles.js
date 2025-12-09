@@ -47,11 +47,16 @@ export function useZplStyles() {
 
   // Get text container style for ^FB behavior
   function getTextContainerStyle(element) {
+    const FONT_SCALE = 1
+    const scaleX = element.fontWidth / element.fontHeight
+
     if (element.blockWidth <= 0) {
       return {
         display: 'inline-block',
         whiteSpace: 'pre',
-        lineHeight: '1'
+        lineHeight: '1',
+        transform: `scaleX(${scaleX})`,
+        transformOrigin: 'left top'
       }
     }
 
@@ -62,18 +67,21 @@ export function useZplStyles() {
       'J': 'justify'
     }
 
-    const lineHeight = element.fontHeight
+    const lineHeight = element.fontHeight * FONT_SCALE
     const maxHeight = lineHeight * element.maxLines
+    const adjustedWidth = element.blockWidth / scaleX
 
     return {
-      width: element.blockWidth + 'px',
+      width: adjustedWidth + 'px',
       maxHeight: maxHeight + 'px',
       overflow: 'hidden',
       textAlign: justifyMap[element.justification] || 'left',
       wordWrap: 'break-word',
       overflowWrap: 'break-word',
       whiteSpace: 'pre-wrap',
-      lineHeight: lineHeight + 'px'
+      lineHeight: lineHeight + 'px',
+      transform: `scaleX(${scaleX})`,
+      transformOrigin: 'left top'
     }
   }
 
@@ -101,16 +109,24 @@ export function useZplStyles() {
 
   // Get inline text element style
   function getTextElementStyle(element) {
-    const scaleX = element.fontWidth / element.fontHeight
+    const FONT_SCALE = 1
+    const fontSize = element.fontHeight * FONT_SCALE
+
+    // Adjust this value to align text top with element top
+    // Typically around 10-15% of font size
+    const topOffset = fontSize * 0.16
 
     return {
-      display: 'inline-block',  // Required for transform to work
-      fontFamily: "'CG Triumvirate Bold', 'Arial Narrow', Arial, sans-serif",
-      fontSize: element.fontHeight + 'px',
-      transform: `scaleX(${scaleX})`,
-      transformOrigin: 'left top',
-      fontWeight: 'bold',
-      letterSpacing: '0px'
+      fontFamily: "'Swiss721BoldCondensed', 'Arial Narrow', Arial, sans-serif",
+      fontSize: fontSize + 'px',
+      fontWeight: 'Bold',
+      letterSpacing: '0px',
+      wordSpacing: '0px',
+      lineHeight: '1',
+      margin: '0',
+      padding: '0',
+      position: 'relative',
+      top: -topOffset + 'px'
     }
   }
 
