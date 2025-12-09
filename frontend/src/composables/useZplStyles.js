@@ -14,30 +14,31 @@ export function useZplStyles() {
   function getFieldBlockDimensions(element) {
     if (element.contentType === 'text') {
       if (element.blockWidth > 0) {
-        // Has field block - width is blockWidth, height is line height * max lines
         return {
           width: element.blockWidth,
           height: element.fontHeight * element.maxLines
         }
       } else {
-        // No field block - measure actual text dimensions
         const canvas = document.createElement('canvas')
         const ctx = canvas.getContext('2d')
         ctx.font = `bold ${element.fontHeight}px "Swiss721BoldCondensed", "Arial Narrow", Arial, sans-serif`
+
         const metrics = ctx.measureText(element.content || '')
         const scaleX = element.fontWidth / element.fontHeight
 
-        const measuredWidth = metrics.width
-        const measuredHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent
+        // Measure actual extremes from reference characters
+        const ascenderMetrics = ctx.measureText('HBDFKLTbdfhkl')
+        const descenderMetrics = ctx.measureText('gjpqy')
+
+        const measuredHeight = ascenderMetrics.actualBoundingBoxAscent + descenderMetrics.actualBoundingBoxDescent
 
         return {
-          width: measuredWidth * scaleX,
+          width: metrics.width * scaleX,
           height: measuredHeight
         }
       }
     }
 
-    // For boxes/other elements
     return {
       width: element.boxWidth || 0,
       height: element.boxHeight || 0
