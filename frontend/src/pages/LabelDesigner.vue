@@ -15,12 +15,12 @@
       </div>
       <!-- Main Canvas Area -->
       <div class="col-8">
-        <q-card class="q-ml-sm bg-grey-1" style="height: 88vh; max-width: 95%;">
+        <q-card class="q-ml-sm bg-grey-1" style="height: 130vh; max-width: 95%;">
           <q-card-section>
             <div class="text-h6">Label Designer</div>
           </q-card-section>
 
-          <div style="height: 80vh; max-width: 98%; overflow: auto;">
+          <div style="height: 120vh; max-width: 98%; overflow: auto;">
             <div class="row justify-center q-pa-md">
               <div
                 class="zpl-canvas"

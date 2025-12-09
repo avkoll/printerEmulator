@@ -63,8 +63,11 @@
       </div>
       <div class="col-8">
         <q-card class="q-ml-sm bg-grey-2" style="height: 88vh; max-width: 95%;">
+          <q-card-section>
+            <div class="text-h6">Output</div>
+          </q-card-section>
 
-          <div style="height: 86vh; max-width: 98%;overflow: auto">
+          <div style="height: 80vh; max-width: 98%;overflow: auto">
             <div class="row justify-center q-gutter-sm">
               <!-- eslint-disable -->
 
