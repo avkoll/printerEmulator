@@ -153,6 +153,7 @@ export function useZplStyles() {
       fontFamily: "'Swiss721BoldCondensed', 'Arial Narrow', Arial, sans-serif",
       fontSize: fontSize + 'px',
       fontWeight: 'Bold',
+      WebkitTextStroke: '.4px currentColor',
       letterSpacing: '0px',
       wordSpacing: '0px',
       lineHeight: '1',
