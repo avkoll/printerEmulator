@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 
 export const useLabelDesignerStore = defineStore('labelDesigner', () => {
   // Constants
-  const DPI = 200
+  const DPI = 203
 
   // Canvas properties
   const canvasWidth = ref(4)

@@ -101,11 +101,16 @@ export function useZplStyles() {
 
   // Get inline text element style
   function getTextElementStyle(element) {
+    const scaleX = element.fontWidth / element.fontHeight
+
     return {
-      fontFamily: "'Courier New', Courier, monospace",
+      display: 'inline-block',  // Required for transform to work
+      fontFamily: "'CG Triumvirate Bold', 'Arial Narrow', Arial, sans-serif",
       fontSize: element.fontHeight + 'px',
+      transform: `scaleX(${scaleX})`,
+      transformOrigin: 'left top',
       fontWeight: 'bold',
-      letterSpacing: (element.fontWidth - element.fontHeight) + 'px'
+      letterSpacing: '0px'
     }
   }
 

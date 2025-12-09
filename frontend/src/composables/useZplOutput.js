@@ -29,6 +29,7 @@ export function useZplOutput() {
 
       // Field rotation if specified
       if (element.rotation && element.rotation !== 'N') {
+        zpl += '\n'
         zpl += `^FW${element.rotation}`
       }
 
@@ -40,15 +41,20 @@ export function useZplOutput() {
       // Content based on type
       if (element.contentType === 'text') {
         // Add font scaling
+        zpl += '\n'
         zpl += `^A0N,${element.fontHeight},${element.fontWidth}`
         // Add field data
+        zpl += '\n'
         zpl += `^FD${element.content}^FS`
       } else if (element.contentType === 'barcode') {
         // Basic Code 128 barcode
+        zpl += '\n'
         zpl += `^BCN,100,Y,N,N`
+        zpl += '\n'
         zpl += `^FD${element.content}^FS`
       } else if (element.contentType === 'box') {
         // Graphic Box
+        zpl += '\n'
         zpl += `^GB${element.boxWidth},${element.boxHeight},${element.borderThickness}^FS`
       }
     })
