@@ -13,8 +13,6 @@ export function useZplStyles() {
   }
   function getFieldBlockDimensions(element) {
     if (element.contentType === 'text') {
-      const scaleX = element.fontWidth / element.fontHeight
-
       if (element.blockWidth > 0) {
         // Has field block - width is blockWidth, height is line height * max lines
         return {
@@ -22,13 +20,19 @@ export function useZplStyles() {
           height: element.fontHeight * element.maxLines
         }
       } else {
-        // No field block - need to estimate based on text length
-        // This is approximate; you might need to measure actual text
-        const estimatedCharWidth = element.fontWidth * 0.6  // Approximate for condensed font
-        const textWidth = (element.text?.length || 1) * estimatedCharWidth
+        // No field block - measure actual text dimensions
+        const canvas = document.createElement('canvas')
+        const ctx = canvas.getContext('2d')
+        ctx.font = `bold ${element.fontHeight}px "Swiss721BoldCondensed", "Arial Narrow", Arial, sans-serif`
+        const metrics = ctx.measureText(element.content || '')
+        const scaleX = element.fontWidth / element.fontHeight
+
+        const measuredWidth = metrics.width
+        const measuredHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent
+
         return {
-          width: textWidth,
-          height: element.fontHeight
+          width: measuredWidth * scaleX,
+          height: measuredHeight
         }
       }
     }
@@ -78,7 +82,6 @@ export function useZplStyles() {
 
   // Get text container style for ^FB behavior
   function getTextContainerStyle(element) {
-    const FONT_SCALE = 1
     const scaleX = element.fontWidth / element.fontHeight
 
     if (element.blockWidth <= 0) {
@@ -98,7 +101,6 @@ export function useZplStyles() {
       'J': 'justify'
     }
 
-    const lineHeight = element.fontHeight * FONT_SCALE
     const maxHeight = element.fontHeight * element.maxLines
     const adjustedWidth = element.blockWidth / scaleX
 
