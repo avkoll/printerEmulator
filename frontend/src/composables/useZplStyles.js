@@ -50,7 +50,8 @@ export function useZplStyles() {
     if (element.blockWidth <= 0) {
       return {
         display: 'inline-block',
-        whiteSpace: 'pre'
+        whiteSpace: 'pre',
+        lineHeight: '1'
       }
     }
 
@@ -61,7 +62,7 @@ export function useZplStyles() {
       'J': 'justify'
     }
 
-    const lineHeight = element.fontHeight * 1.2
+    const lineHeight = element.fontHeight
     const maxHeight = lineHeight * element.maxLines
 
     return {

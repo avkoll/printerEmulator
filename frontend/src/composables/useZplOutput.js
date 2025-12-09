@@ -11,14 +11,14 @@ export function useZplOutput() {
     const canvasRotation = store.canvasRotation
 
     if (elements.length === 0) {
-      return '^XA^XZ' // Empty label
+      return '^XA\n^XZ' // Empty label
     }
 
     let zpl = '^XA' // Start of label format
 
-    // Add canvas rotation if needed
+    // Add canvas rotation if needed don't think this is needed.
     if (canvasRotation !== 0) {
-      zpl += `^PO${canvasRotation === 90 ? 'N' : canvasRotation === 180 ? 'I' : canvasRotation === 270 ? 'R' : 'N'}`
+      zpl += `\n^PO${canvasRotation === 90 ? 'N' : canvasRotation === 180 ? 'I' : canvasRotation === 270 ? 'R' : 'N'}`
     }
 
     // Process each element
