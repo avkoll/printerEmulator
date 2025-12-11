@@ -96,6 +96,19 @@ export const useLabelDesignerStore = defineStore('labelDesigner', () => {
     }
   }
 
+  function setElements(newElements) {
+    elements.value = newElements
+    selectedElement.value = null
+    // Update nextId to avoid collisions
+    const maxId = Math.max(...newElements.map(e => e.id), 0)
+    nextId = maxId + 1
+  }
+
+  function clearAll() {
+    elements.value = []
+    selectedElement.value = null
+  }
+
   return {
     // Constants
     DPI,
@@ -117,6 +130,8 @@ export const useLabelDesignerStore = defineStore('labelDesigner', () => {
     addFieldBlock,
     selectElement,
     deselectElement,
-    deleteSelectedElement
+    deleteSelectedElement,
+    setElements,
+    clearAll
   }
 })
