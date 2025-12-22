@@ -167,10 +167,20 @@ export function useZplStyles() {
 
   // Get graphic box style
   function getBoxStyle(element) {
+    if (element.contentType === 'line') {
+      return {
+        width: element.boxWidth + 'px',
+        height: element.boxHeight + 'px',
+        backgroundColor: 'currentColor',
+        border: 'none'
+      }
+    }
     return {
       width: element.boxWidth + 'px',
       height: element.boxHeight + 'px',
-      borderWidth: element.borderThickness + 'px'
+      borderWidth: element.borderThickness + 'px',
+      borderStyle: 'solid',
+      borderColor: 'currentColor'
     }
   }
 

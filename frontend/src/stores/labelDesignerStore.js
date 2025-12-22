@@ -42,7 +42,8 @@ export const useLabelDesignerStore = defineStore('labelDesigner', () => {
   const contentTypeOptions = [
     { label: 'Text (^FD)', value: 'text' },
     { label: 'Barcode (^BC)', value: 'barcode' },
-    { label: 'Graphic Box (^GB)', value: 'box' }
+    { label: 'Graphic Box (^GB)', value: 'box' },
+    { label: 'Plex Line (^GB)', value: 'line' }
   ]
 
   // Computed

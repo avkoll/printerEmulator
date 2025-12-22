@@ -69,6 +69,11 @@
                       class="graphic-box"
                       :style="getBoxStyle(element)"
                     ></div>
+
+                    <div v-else-if="element.contentType === 'line'"
+                         class="graphic-line"
+                         :style="getBoxStyle(element)"
+                    ></div>
                   </div>
                 </div>
 

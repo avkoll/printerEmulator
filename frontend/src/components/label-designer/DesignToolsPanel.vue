@@ -214,31 +214,32 @@
           <div class="text-caption text-grey-5">Barcode rendering coming soon</div>
         </template>
 
-        <!-- Graphic Box placeholder -->
-        <template v-else-if="selectedElement.contentType === 'box'">
+        <!-- Graphic Box and Line properties -->
+        <template v-else-if="selectedElement.contentType === 'box' || selectedElement.contentType === 'line'">
           <q-input
             color="purple-12"
             type="number"
             v-model.number="selectedElement.boxWidth"
-            label="Box Width (dots)"
+            :label="selectedElement.contentType === 'line' ? 'Line Length (dots)' : 'Box Width (dots)'"
             class="q-mb-sm"
           >
             <template v-slot:prepend>
-              <q-icon name="crop_landscape" />
+              <q-icon :name="selectedElement.contentType === 'line' ? 'horizontal_rule' : 'crop_landscape'" />
             </template>
           </q-input>
           <q-input
             color="purple-12"
             type="number"
             v-model.number="selectedElement.boxHeight"
-            label="Box Height (dots)"
+            :label="selectedElement.contentType === 'line' ? 'Line Thickness (dots)' : 'Box Height (dots)'"
             class="q-mb-sm"
           >
             <template v-slot:prepend>
-              <q-icon name="crop_portrait" />
+              <q-icon :name="selectedElement.contentType === 'line' ? 'line_weight' : 'crop_portrait'" />
             </template>
           </q-input>
           <q-input
+            v-if="selectedElement.contentType === 'box'"
             color="purple-12"
             type="number"
             v-model.number="selectedElement.borderThickness"

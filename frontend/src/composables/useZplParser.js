@@ -253,7 +253,11 @@ export function useZplParser() {
           // Graphic Box
           if (current) {
             const gbData = parseGraphicBox(params)
-            current.contentType = 'box'
+
+            // If thickness matches one of the dimensions, treat it as a line for easier editing
+            const isSolidLine = gbData.borderThickness >= Math.min(gbData.boxWidth, gbData.boxHeight)
+            current.contentType = isSolidLine ? 'line' : 'box'
+
             current.boxWidth = gbData.boxWidth
             current.boxHeight = gbData.boxHeight
             current.borderThickness = gbData.borderThickness

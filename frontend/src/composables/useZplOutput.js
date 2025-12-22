@@ -52,10 +52,13 @@ export function useZplOutput() {
         zpl += `^BCN,100,Y,N,N`
         zpl += '\n'
         zpl += `^FD${element.content}^FS`
-      } else if (element.contentType === 'box') {
+      } else if (element.contentType === 'box' || element.contentType === 'line') {
+        const thickness = element.contentType === 'line'
+          ? Math.min(element.boxWidth, element.boxHeight)
+          : element.borderThickness
         // Graphic Box
         zpl += '\n'
-        zpl += `^GB${element.boxWidth},${element.boxHeight},${element.borderThickness}^FS`
+        zpl += `^GB${element.boxWidth},${element.boxHeight},${thickness}^FS`
       }
     })
 
