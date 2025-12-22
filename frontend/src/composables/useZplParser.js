@@ -80,14 +80,18 @@ export function useZplParser() {
     }
   }
 
-  // Parse ^GB command (graphic box)
+  // Parse ^GB command (graphic box) and Lines
   function parseGraphicBox(params) {
     const [width, height, thickness, color, rounding] =
       parseParams(params, [100, 50, 2, 'B', 0])
 
+    // ZPL substitutes thickness when width or height is 0
+    const effectiveWidth = width === 0 ? thickness : width
+    const effectiveHeight = height === 0 ? thickness : height
+
     return {
-      boxWidth: width,
-      boxHeight: height,
+      boxWidth: effectiveWidth,
+      boxHeight: effectiveHeight,
       borderThickness: thickness
     }
   }

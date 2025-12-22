@@ -220,24 +220,26 @@
             color="purple-12"
             type="number"
             v-model.number="selectedElement.boxWidth"
-            :label="selectedElement.contentType === 'line' ? 'Line Length (dots)' : 'Box Width (dots)'"
+            label="Width (dots)"
             class="q-mb-sm"
           >
             <template v-slot:prepend>
-              <q-icon :name="selectedElement.contentType === 'line' ? 'horizontal_rule' : 'crop_landscape'" />
+              <q-icon name="crop_landscape" />
             </template>
           </q-input>
+
           <q-input
             color="purple-12"
             type="number"
             v-model.number="selectedElement.boxHeight"
-            :label="selectedElement.contentType === 'line' ? 'Line Thickness (dots)' : 'Box Height (dots)'"
+            label="Height (dots)"
             class="q-mb-sm"
           >
             <template v-slot:prepend>
-              <q-icon :name="selectedElement.contentType === 'line' ? 'line_weight' : 'crop_portrait'" />
+              <q-icon name="crop_portrait" />
             </template>
           </q-input>
+
           <q-input
             v-if="selectedElement.contentType === 'box'"
             color="purple-12"

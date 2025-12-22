@@ -58,7 +58,7 @@ export function useZplOutput() {
           : element.borderThickness
         // Graphic Box
         zpl += '\n'
-        zpl += `^GB${element.boxWidth},${element.boxHeight},${thickness}^FS`
+        zpl += `^GB${element.boxWidth},${element.boxHeight},${element.borderThickness}^FS`
       }
     })
 
