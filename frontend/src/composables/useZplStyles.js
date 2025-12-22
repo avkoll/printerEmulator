@@ -125,7 +125,15 @@ export function useZplStyles() {
       return {}
     }
 
-    if (element.blockWidth <= 0) return {}
+    // Fix for offset: Ensure non-text elements (box/line) are pinned to
+    // the top-left of the field block if no block width is defined.
+    if (!element.blockWidth || element.blockWidth <= 0) {
+      return {
+        position: 'absolute',
+        top: 0,
+        left: 0
+      }
+    }
 
     const alignMap = {
       'L': 'flex-start',

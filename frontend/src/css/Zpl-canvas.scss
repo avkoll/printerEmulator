@@ -46,8 +46,8 @@ $origin-marker-color: #ff6b6b;
   border: 1px solid transparent;
   box-sizing: border-box;
   display: inline-block;
-  min-width: 20px;
-  min-height: 20px;
+  min-width: 0px;
+  min-height: 0px;
 
   &.selected {
     background: $accent-color-light;
